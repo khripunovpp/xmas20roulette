@@ -1,0 +1,222 @@
+@import "bourbon"
+@import "icon.sass"
+@import "mixins"
+
+$color: #2f1d44
+$font: 'Montserrat', sans-serif
+$font2: 'Rubik', sans-serif
+
+html
+	box-sizing: border-box
+
+*,
+*::after,
+*::before
+	box-sizing: inherit
+	outline: none
+
+.xmas20wheel
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	background-color: rgba(#000,.5)
+	text-align: center
+	&__container
+		position: absolute
+		top: 0
+		left: 0
+		height: 100%
+		overflow-x: hidden
+		overflow-y: auto
+		width: 100%
+		max-width: 730px
+	&__wrapper
+		height: 100%
+		background-color: $color
+		padding: 70px 15px
+		width: 100%
+		max-width: 730px
+		&::after
+			content: ''
+			background-image: url(../img/xmas20wheel-decor.png)
+			width: 800px
+			height: 153px
+			position: absolute
+			top: 0
+			left: 50%	
+			margin-left: -400px
+	&__title
+		font-size: 14px
+		color: #fff
+		font-weight: 700
+		margin: 0 0 20px
+		font-family: $font !important
+		strong
+			color: #ffd412
+			font-size: 20px
+			display: block
+			font-weight: 900
+			text-transform: uppercase
+			margin-top: 8px
+	&__btn
+		cursor: pointer
+		display: table
+		margin: 20px auto 0
+		color: #fff
+		background-color: #ee2020
+		font-weight: 700
+		font-size: 14px
+		text-transform: uppercase
+		line-height: 1
+		max-width: 240px
+		width: 100%
+		padding: 15px
+		border-radius: 50px
+		box-shadow: 0 10px 18px rgba(#ee2020, .27)
+		transition: all .2s ease-in-out
+		font-family: $font !important
+		&:hover
+			box-shadow: 0 0 0 rgba(#ee2020, .27)
+			transform: translateY(18px)
+	&__wheel
+		width: 282px
+		height: 282px
+		margin: 0 auto
+		position: relative
+		box-shadow: 0 0 0 2px	#77462f, 0 10px 40px rgba(#000,.5)
+		border-radius: 50%
+		&.spin
+			.xmas20wheel__wheel_roulette
+				animation: spin both cubic-bezier(0, 1, 0, 1)
+		&.win
+			.xmas20wheel__wheel_prizes
+				opacity: 1
+		&_picker
+			width: 44px
+			height: 51px
+			background-image: url(../img/xmas20wheel-picker.png)
+			position: absolute
+			z-index: 3
+			top: 20px
+			right: 13px
+			transform-origin: 25px 14px
+		&_bg
+			background-image: url(../img/xmas20wheel-wheel.png)
+			background-position: 50% 50%
+			background-repeat: no-repeat
+			background-size: cover
+			width: 282px
+			height: 282px
+			margin: 0 auto
+			border-radius: 50%
+		&_sign
+			font-size: 11px
+			font-family: $font2 !important
+			font-weight: 200
+			line-height: 1
+			font-style: italic
+			position: absolute
+			display: block
+			width: 141px
+			text-align: right
+			transform-origin: 0 0
+			top: 50%
+			left: 50%
+			padding-right: 15px
+			&:nth-of-type(1)
+				transform: rotate(-75deg) translateY(-50%)
+			&:nth-of-type(3)
+				transform: rotate(-15deg) translateY(-50%)
+			&:nth-of-type(5)
+				transform: rotate(45deg) translateY(-50%)
+			&:nth-of-type(7)
+				transform: rotate(105deg) translateY(-50%)
+			&:nth-of-type(9)
+				transform: rotate(165deg) translateY(-50%)
+			&:nth-of-type(11)
+				transform: rotate(225deg) translateY(-50%)
+		&_box
+			position: absolute
+			top: 50%
+			left: 50%
+			transform-origin: 0 50%
+			width: 141px
+			height: 45px
+			&::after
+				content: ''
+				background-image: url(../img/xmas20wheel-box.png)
+				background-size: cover
+				background-repeat: no-repeat
+				width: 45px
+				height: 45px
+				display: block
+				right: 25px
+				position: absolute
+			&:nth-of-type(2)
+				transform: translateY(-50%) rotate(-45deg)
+				&::after
+					box-shadow: -10px 10px 7px rgba(#000,.2)
+			&:nth-of-type(4)
+				transform: translateY(-50%) rotate(15deg)
+				&::after
+					box-shadow: 7px 10px 7px rgba(#000,.2)
+			&:nth-of-type(6)
+				transform: translateY(-50%) rotate(75deg)
+				&::after
+					box-shadow: 10px 5px 7px rgba(#000,.2)
+			&:nth-of-type(8)
+				transform: translateY(-50%) rotate(135deg)
+				&::after
+					box-shadow: 10px -10px 7px rgba(#000,.2)
+			&:nth-of-type(10)
+				transform: translateY(-50%) rotate(195deg)
+				&::after
+					box-shadow: -5px -10px 7px rgba(#000,.2)
+			&:nth-of-type(12)
+				transform: translateY(-50%) rotate(255deg)
+				&::after
+					box-shadow: -10px -5px 7px rgba(#000,.2)
+		&_prizes
+			opacity: 0
+		&_prize-discount
+			position: absolute
+			top: 50%
+			left: 50%
+			transform-origin: 0 50%
+			width: 141px
+			height: 45px
+			color: #ffd412
+			span
+				position: absolute
+				z-index: 2
+				background-color: rgba(#000,.5)
+				width: 45px
+				height: 45px
+				line-height: 45px
+				font-size: 15px
+				font-weight: 700
+				font-family: $font !important
+			&--accent
+				color: #fff
+			&:nth-of-type(1)
+				transform: translateY(-50%) rotate(-45deg)
+			&:nth-of-type(2)
+				transform: translateY(-50%) rotate(15deg)
+			&:nth-of-type(3)
+				transform: translateY(-50%) rotate(75deg)
+			&:nth-of-type(4)
+				transform: translateY(-50%) rotate(135deg)
+			&:nth-of-type(5)
+				transform: translateY(-50%) rotate(195deg)
+			&:nth-of-type(6)
+				transform: translateY(-50%) rotate(255deg)
+
+			
+@keyframes spin 
+	to
+		transform: rotate(-10746deg)
+
+//ALWAYS END
+@import "media"
