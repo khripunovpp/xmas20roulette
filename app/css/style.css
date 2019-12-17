@@ -27,6 +27,7 @@ html {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
+  display: none;
 }
 
 .xmas20wheel__container {
@@ -38,6 +39,18 @@ html {
   overflow-y: auto;
   width: 100%;
   max-width: 730px;
+  -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+
+.xmas20wheel__container.show {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
 }
 
 .xmas20wheel__wrapper {
@@ -104,6 +117,23 @@ html {
   -webkit-transform: translateY(18px);
   -ms-transform: translateY(18px);
   transform: translateY(18px);
+}
+
+.xmas20wheel__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
+  background-image: url(../img/xmas20wheel-close.png);
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+  cursor: pointer;
+  opacity: .8;
+}
+
+.xmas20wheel__close:hover {
+  opacity: 1;
 }
 
 .xmas20wheel__wheel {
@@ -358,6 +388,21 @@ html {
   -webkit-transform: translateY(-50%) rotate(255deg);
   -ms-transform: translateY(-50%) rotate(255deg);
   transform: translateY(-50%) rotate(255deg);
+}
+
+.xmas20wheel__wheel_center {
+  background-image: url(../img/xmas20wheel-box.png);
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -30px;
+  margin-left: -30px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 @-webkit-keyframes spin {

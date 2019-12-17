@@ -3,45 +3,56 @@
         var defaultOp = {
             scroll: true,
             spin: 0,
-            duration: 5000
+            duration: 5000,
+            timer: 1500
         };
         var options = $.extend(defaultOp, params);
         var popup = $('.xmas20wheel'),
-            wheel = $('.xmas20wheel__wheel');
+            container = $('.xmas20wheel__container'),
+            wheel = $('.xmas20wheel__wheel'),
+            roulette = $('.xmas20wheel__wheel_roulette'),
+            spinBtn = $('.xmas20wheel__btn'),
+            closeBtn = $('.xmas20wheel__close');
 
-        this.spin = spin;
-        this.open = function() {
-            popup.fadeIn(400);
-            $('body').css("overflow", "hidden");
-        }
-        this.close = function() {
-            popup.fadeOut(400, function() {
-                wheel.removeClass('spin');
-                $('body').css("overflow", "auto");
+        $(function() {
+            $('head').append($('<style />').html('.fixedBody {overflow: hidden}'));
+            setTimeout(function() {
+                open();
+            }, options.timer);
+            spinBtn.on('click', spin);
+            closeBtn.on('click', close);
+        })
+
+        function open() {
+            $('body').addClass('fixedBody');
+            popup.fadeIn(400, function() {
+                container.addClass('show').css('transition-duration', '.4s')
             });
-            if (options.scroll && options.spin > 0) toForm()
         }
 
-        ;(function() {
-            $('.xmas20wheel__btn').on('click', function(event) {
-                spin()
-            });
-        })()
+        function close() {
+            container.removeClass('show').css('transition-duration', '.4s')
+            setTimeout(function() {
+                popup.fadeOut(400, function() {
+                    wheel.removeClass('spin');
+                    $('body').removeClass('fixedBody');
+                });
+                if (options.scroll && options.spin > 0) toForm()
+            }, 100)
+        }
 
         function spin() {
             if (options.spin === 0) {
-                wheel.addClass('spin');
-                $('.xmas20wheel__wheel_roulette').css('animation-duration', options.duration / 1000 + 's');
                 options.spin = 1;
-                setTimeout(function() {
-                    win();
-                }, options.duration)
+                roulette.css('animation-duration', options.duration / 1000 + 's');
+                wheel.addClass('spin');
+                setTimeout(function() { win() }, options.duration)
             }
         }
 
         function win() {
-            console.log(1)
             wheel.addClass('win');
+            setTimeout(function() { close() }, 1200)
         }
 
         function toForm() {
@@ -62,28 +73,5 @@
 }());
 
 $(function() {
-
     var xmas20wheel = new Xmas20Wheel()
-    $('.b-blackFridayWheel__btn').on('click', function(event) {
-        event.preventDefault();
-        wheel.spin()
-        setTimeout(function() {
-            wheel.won()
-        }, 5500)
-        setTimeout(function() {
-            wheel.close()
-        }, 9500)
-    });
-    $('.b-blackFridayWheel__close').on('click', function(event) {
-        event.preventDefault();
-        wheel.close()
-    });
-
-    // РґР»СЏ С‚РµСЃС‚Р°
-
-    $('.open').on('click', function(event) {
-        event.preventDefault();
-        wheel.open()
-    });
-
 });

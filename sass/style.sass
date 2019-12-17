@@ -23,6 +23,7 @@ html
 	height: 100%
 	background-color: rgba(#000,.5)
 	text-align: center
+	display: none
 	&__container
 		position: absolute
 		top: 0
@@ -32,6 +33,10 @@ html
 		overflow-y: auto
 		width: 100%
 		max-width: 730px
+		transform: translateX(-100%)
+		transition-timing-function: ease-in-out
+		&.show
+			transform: translateX(0)
 	&__wrapper
 		height: 100%
 		background-color: $color
@@ -80,6 +85,19 @@ html
 		&:hover
 			box-shadow: 0 0 0 rgba(#ee2020, .27)
 			transform: translateY(18px)
+	&__close
+		position: absolute
+		top: 15px
+		right: 15px
+		z-index: 2
+		background-image: url(../img/xmas20wheel-close.png)
+		width: 25px
+		height: 25px
+		background-size: cover
+		cursor: pointer
+		opacity: .8
+		&:hover
+			opacity: 1
 	&__wheel
 		width: 282px
 		height: 282px
@@ -212,6 +230,17 @@ html
 				transform: translateY(-50%) rotate(195deg)
 			&:nth-of-type(6)
 				transform: translateY(-50%) rotate(255deg)
+		&_center
+			background-image: url(../img/xmas20wheel-box.png)
+			background-size: cover
+			width: 60px
+			height: 60px
+			position: absolute
+			top: 50%
+			left: 50%
+			margin-top: -30px
+			margin-left: -30px
+			transform: rotate(45deg)
 
 			
 @keyframes spin 
